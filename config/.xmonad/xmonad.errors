@@ -1,0 +1,7 @@
+
+xmonad.hs:93:39: warning: [-Wtabs]
+    Tab character found here, and in 18 further locations.
+    Please use spaces instead.
+   |
+93 |     , ((0,         xF86XK_AudioPlay),                   spawn "xdotool key XF86AudioPlay")
+   |                                       ^^

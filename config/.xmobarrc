@@ -1,0 +1,37 @@
+Config {
+        font     = "xft:Iosevka Nerd Font:size=12:antialias=true"
+       , bgColor  = "#1f2623"
+       , fgColor  = "#f8f8f2"
+       , position = TopH 30
+       , border   = BottomB
+       , borderWidth = 3
+       , borderColor = "#2de0a7"
+       , commands = [ Run Weather "EGPF"
+                        [ "--template", "<weather> <tempC>°C"
+                        , "-L", "0"
+                        , "-H", "25"
+                        , "--low"   , "lightblue"
+                        , "--normal", "#f8f8f2"
+                        , "--high"  , "red"
+                        ] 36000
+                    , Run Cpu
+                        [ "-L", "3"
+                        , "-H", "50"
+                        , "--high"  , "red"
+                        , "--normal", "green"
+                        ] 10
+                    , Run Alsa "default" "Master"
+                        [ "--template", "<volumestatus>"
+                        , "--suffix"  , "True"
+                        , "--"
+                        , "--on", ""
+                        ]
+                    , Run Memory ["--template", "Mem: <usedratio>%"] 10
+                    , Run Swap [] 10
+                    , Run Date "%a %Y-%m-%d <fc=#2de0a7>%H:%M</fc>" "date" 10
+                    , Run UnsafeStdinReader
+                    ]
+       , sepChar  = "%"
+       , alignSep = "}{"
+       , template = "%UnsafeStdinReader% }Legion{ %alsa:default:Master% | %cpu% | %memory% * %swap% | %EGPF% | %date% "
+       }
