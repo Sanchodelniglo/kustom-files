@@ -42,6 +42,7 @@ rofiLauncher  = spawn "~/.xmonad/rofi/bin/launcher"
 rofiRunner    = spawn "~/.xmonad/rofi/bin/runner"
 rofiScreenshot= spawn "~/.xmonad/rofi/bin/screenshot"
 rofiNetwork   = spawn "~/.xmonad/rofi/bin/network"
+rofiMusic   = spawn "~/.xmonad/rofi/bin/music"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -95,6 +96,7 @@ myKeys conf@(XConfig {XMonad.modMask = super}) = M.fromList $
     , ((super,               xK_r     ), rofiRunner)
     , ((super,               xK_s     ), rofiScreenshot)
     , ((super,               xK_n     ), rofiNetwork)
+    , ((super,               xK_m     ), rofiMusic)
     , ((mod1Mask,            xK_F1    ), rofiLauncher)
 
       -- Audio keys
@@ -135,7 +137,7 @@ myKeys conf@(XConfig {XMonad.modMask = super}) = M.fromList $
     , ((super,               xK_Left     ), windows W.focusUp  )
 
     -- Move focus to the master window
-    , ((super,               xK_m     ), windows W.focusMaster  )
+    -- , ((super,               xK_m     ), windows W.focusMaster  )
 
     -- Swap the focused window and the master window
     , ((super,               xK_Return), windows W.swapMaster)
@@ -257,6 +259,7 @@ myManageHook = composeAll
     , className =? "Nitrogen"       --> doRectFloat (W.RationalRect (1 % 4) (1 % 4) (1 % 2) (1 % 2))
     , className =? "Thunar"         --> doRectFloat (W.RationalRect (1 % 4) (1 % 4) (1 % 2) (1 % 2))
     , title     =? "Bandwidth Monitor"         --> doRectFloat (W.RationalRect (1 % 4) (1 % 4) (1 % 2) (1 % 2))
+    , title     =? "Connexions réseau"         --> doRectFloat (W.RationalRect (1 % 4) (1 % 4) (1 % 2) (1 % 2))
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
     , className =? "file_progress"   --> doFloat

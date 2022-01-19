@@ -1,7 +1,7 @@
 
-xmonad.hs:101:39: warning: [-Wtabs]
+xmonad.hs:103:39: warning: [-Wtabs]
     Tab character found here, and in 18 further locations.
     Please use spaces instead.
     |
-101 |     , ((0,         xF86XK_AudioPlay),                   spawn "playerctl play-pause")
+103 |     , ((0,         xF86XK_AudioPlay),                   spawn "playerctl play-pause")
     |                                       ^^
