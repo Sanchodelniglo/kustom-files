@@ -1,5 +1,5 @@
-Config {
-        font     = "xft:Iosevka Nerd Font:size=12:antialias=true"
+Config {font     = "xft:Iosevka Nerd Font:size=12:antialias=true"
+       , additionalFonts = ["xft:JetBrainsMono Nerd Font:size=10:bold:antialias=true"]
        , bgColor  = "#1f2623"
        , fgColor  = "#f8f8f2"
        , position = TopH 30
@@ -15,23 +15,48 @@ Config {
                         , "--high"  , "red"
                         ] 36000
                     , Run Cpu
-                        [ "-L", "3"
-                        , "-H", "50"
-                        , "--high"  , "red"
-                        , "--normal", "green"
+                        [ "-t", " <vbar>"
+                        , "-L", "50"
+                        , "-H", "75"
+                        , "--high"  , "#ff5555"
+                        , "--normal", "#f1fa8c"
+                        , "--low"   , "#2de0a7"
                         ] 10
                     , Run Alsa "default" "Master"
-                        [ "--template", "<volumestatus>"
-                        , "--suffix"  , "True"
-                        , "--"
-                        , "--on", ""
+                        [ "--template", "蓼 <status><volumevbar>"
+                        -- , "--suffix"  , "True"
+                        -- , "--"
+                        -- , "--on", ""
+                        , "-L", "60"
+                        , "-H", "80"
+                        , "--high"  , "#ff5555"
+                        , "--normal", "#f1fa8c"
+                        , "--low"   , "#2de0a7"
                         ]
-                    , Run Memory ["--template", "Mem: <usedratio>%"] 10
+                    , Run Memory
+                        ["--template", " <usedvbar>"
+                        , "-L", "50"
+                        , "-H", "75"
+                        , "--high"  , "#ff5555"
+                        , "--normal", "#f1fa8c"
+                        , "--low"   , "#2de0a7"
+                        ] 10
                     , Run Swap [] 10
+                    , Run Wireless "wlan0" [
+                        "-t", "<essid> <qualityvbar>"
+                        , "-L", "25"
+                        , "-H", "75"
+                        , "--low"   , "#ff5555"
+                        , "--normal", "#f1fa8c"
+                        , "--high"  , "#2de0a7"
+
+                        ] 10
                     , Run Date "%a %Y-%m-%d <fc=#2de0a7>%H:%M</fc>" "date" 10
+                    , Run Com "playerctl" ["metadata", "--format", "<fc=#1f2623,#2de0a7><fn=1> 懶 {{ artist }}-{{ title }} </fn></fc>"] "player" 10
                     , Run UnsafeStdinReader
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
-       , template = "%UnsafeStdinReader% }Legion{ %alsa:default:Master% | %cpu% | %memory% * %swap% | %EGPF% | %date% "
+       , template = "%UnsafeStdinReader% • %player%}{ %alsa:default:Master% • %cpu% • %memory% • %wlan0wi% • %date% "
        }
+

@@ -15,6 +15,7 @@ import XMonad.Hooks.EwmhDesktops
 import Graphics.X11.ExtraTypes.XF86
 
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageHelpers
 
 import XMonad.Hooks.WorkspaceHistory
 
@@ -23,6 +24,7 @@ import System.Exit
 import Control.Monad
 import Data.Monoid
 import Data.Maybe
+import Data.Ratio
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -90,10 +92,10 @@ myKeys conf@(XConfig {XMonad.modMask = super}) = M.fromList $
     , ((mod1Mask,            xK_F1    ), rofiLauncher)
 
       -- Audio keys
-    , ((0,         xF86XK_AudioPlay), 			spawn "xdotool key XF86AudioPlay")
-    , ((0,         xF86XK_AudioPrev), 			spawn "mpc prev")
-    , ((0,         xF86XK_AudioNext), 			spawn "mpc next")
-    , ((0,         xF86XK_AudioStop), 			spawn "mpc stop")
+    , ((0,         xF86XK_AudioPlay), 			spawn "playerctl play-pause")
+    , ((0,         xF86XK_AudioPrev), 			spawn "playerctl previous")
+    , ((0,         xF86XK_AudioNext), 			spawn "playerctl next")
+    , ((0,         xF86XK_AudioStop), 			spawn "playerctl stop")
     , ((0,         xF86XK_AudioRaiseVolume), 	spawn "volume --inc")
     , ((0,         xF86XK_AudioLowerVolume), 	spawn "volume --dec")
     , ((0,         xF86XK_AudioMute), 			spawn "volume --toggle")
@@ -246,6 +248,8 @@ myLayout = tiled ||| Mirror tiled ||| Full
 myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
+    , className =? "Nitrogen"       --> doRectFloat (W.RationalRect (1 % 4) (1 % 4) (1 % 2) (1 % 2))
+    , className =? "Thunar"         --> doRectFloat (W.RationalRect (1 % 4) (1 % 4) (1 % 2) (1 % 2))
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
     , className =? "file_progress"   --> doFloat
@@ -275,7 +279,7 @@ myLogHook = workspaceHistoryHook <+> dynamicLogWithPP myXmobarPP
 myXmobarPP :: PP
 myXmobarPP = def
   {
-    ppSep = red " | "
+    ppSep = red " • "
     , ppTitleSanitize   = green . xmobarStrip . shorten 50
     , ppCurrent         = blue . wrap (blue "[") (blue "]")
     , ppHidden          = green . wrap " " ""
