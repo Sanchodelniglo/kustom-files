@@ -72,7 +72,7 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["\62211","\63116","\62523","\63206","ﭮ"]
+myWorkspaces    = ["\62211","\63116","\62523","\63206","\61884", "ﭮ"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -175,6 +175,9 @@ myKeys conf@(XConfig {XMonad.modMask = super}) = M.fromList $
     -- Restart xmonad
     , ((super              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
 
+    -- Lock screen
+    , ((mod1Mask .|. controlMask, xK_l     ), spawn "betterlockscreen --lock")
+
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     , ((super .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
     ]
@@ -183,7 +186,7 @@ myKeys conf@(XConfig {XMonad.modMask = super}) = M.fromList $
     -- mod-[1..9], Switch to workspace N
     -- mod-shift-[1..9], Move client to workspace N
     [((m .|. super, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_ampersand,xK_eacute,xK_quotedbl,xK_apostrophe,xK_parenleft]
+        | (i, k) <- zip (XMonad.workspaces conf) [xK_ampersand,xK_eacute,xK_quotedbl,xK_apostrophe,xK_parenleft,xK_minus]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
     ++
 
@@ -260,6 +263,7 @@ myManageHook = composeAll
     , className =? "Thunar"         --> doRectFloat (W.RationalRect (1 % 4) (1 % 4) (1 % 2) (1 % 2))
     , title     =? "Bandwidth Monitor"         --> doRectFloat (W.RationalRect (1 % 4) (1 % 4) (1 % 2) (1 % 2))
     , title     =? "Connexions réseau"         --> doRectFloat (W.RationalRect (1 % 4) (1 % 4) (1 % 2) (1 % 2))
+    , title     =? "Screen Layout Editor"         --> doRectFloat (W.RationalRect (1 % 4) (1 % 4) (1 % 2) (1 % 2))
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
     , className =? "file_progress"   --> doFloat

@@ -42,6 +42,7 @@ Config {font     = "xft:Iosevka Nerd Font:size=12:antialias=true"
                         , "--low"   , "#2de0a7"
                         ] 10
                     , Run Swap [] 10
+                    , Run Com "bash" [".xmonad/scripts/battery.sh"] "battery" 3600
                     , Run Wireless "wlan0" [
                         "-t", "<essid> <qualityvbar>"
                         , "-L", "25"
@@ -57,6 +58,6 @@ Config {font     = "xft:Iosevka Nerd Font:size=12:antialias=true"
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
-       , template = "%UnsafeStdinReader% • %player%}{ %alsa:default:Master% • %cpu% • %memory% • %wlan0wi% • %date% "
+       , template = "%UnsafeStdinReader% • %player%}{ %alsa:default:Master% • %cpu% • %memory% • %wlan0wi% • %battery% • %date% "
        }
 
