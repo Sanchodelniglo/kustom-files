@@ -1,12 +1,3 @@
---
--- xmonad example config file.
---
--- A template showing all available configuration hooks,
--- and how to override the defaults in your own xmonad.hs conf file.
---
--- Normally, you'd only override those defaults you care about.
---
-
 import XMonad
 import XMonad.Util.SpawnOnce
 
@@ -54,7 +45,7 @@ myClickJustFocuses = False
 
 -- Width of the window border in pixels.
 --
-myBorderWidth   = 3
+myBorderWidth   = 2
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -100,17 +91,17 @@ myKeys conf@(XConfig {XMonad.modMask = super}) = M.fromList $
     , ((mod1Mask,            xK_F1    ), rofiLauncher)
 
       -- Audio keys
-    , ((0,         xF86XK_AudioPlay), 			spawn "playerctl play-pause")
-    , ((0,         xF86XK_AudioPrev), 			spawn "playerctl previous")
-    , ((0,         xF86XK_AudioNext), 			spawn "playerctl next")
-    , ((0,         xF86XK_AudioStop), 			spawn "playerctl stop")
-    , ((0,         xF86XK_AudioRaiseVolume), 	spawn "volume --inc")
-    , ((0,         xF86XK_AudioLowerVolume), 	spawn "volume --dec")
-    , ((0,         xF86XK_AudioMute), 			spawn "volume --toggle")
+    , ((0,         xF86XK_AudioPlay),       spawn "playerctl play-pause")
+    , ((0,         xF86XK_AudioPrev),       spawn "playerctl previous")
+    , ((0,         xF86XK_AudioNext),       spawn "playerctl next")
+    , ((0,         xF86XK_AudioStop),       spawn "playerctl stop")
+    , ((0,         xF86XK_AudioRaiseVolume),spawn "volume --inc")
+    , ((0,         xF86XK_AudioLowerVolume),spawn "volume --dec")
+    , ((0,         xF86XK_AudioMute),       spawn "volume --toggle")
 
     -- Brightness keys
-    , ((0,         xF86XK_MonBrightnessUp), 	spawn "brightness --inc")
-    , ((0,         xF86XK_MonBrightnessDown), 	spawn "brightness --dec")
+    , ((0,         xF86XK_MonBrightnessUp),     spawn "brightness --inc")
+    , ((0,         xF86XK_MonBrightnessDown),   spawn "brightness --dec")
 
 
     -- close focused window

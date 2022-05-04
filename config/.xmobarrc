@@ -5,7 +5,7 @@ Config {font     = "xft:Iosevka Nerd Font:size=12:antialias=true"
        , position = TopH 30
        , border   = BottomB
        , borderWidth = 3
-       , borderColor = "#2de0a7"
+       , borderColor = "#bd93f9"
        , commands = [ Run Weather "EGPF"
                         [ "--template", "<weather> <tempC>°C"
                         , "-L", "0"
@@ -15,7 +15,7 @@ Config {font     = "xft:Iosevka Nerd Font:size=12:antialias=true"
                         , "--high"  , "red"
                         ] 36000
                     , Run Cpu
-                        [ "-t", " <vbar>"
+                        [ "-t", "\57958 <vbar>"
                         , "-L", "50"
                         , "-H", "75"
                         , "--high"  , "#ff5555"
@@ -34,7 +34,7 @@ Config {font     = "xft:Iosevka Nerd Font:size=12:antialias=true"
                         , "--low"   , "#2de0a7"
                         ]
                     , Run Memory
-                        ["--template", " <usedvbar>"
+                        ["--template", "\61639 <usedvbar>"
                         , "-L", "50"
                         , "-H", "75"
                         , "--high"  , "#ff5555"
@@ -58,6 +58,6 @@ Config {font     = "xft:Iosevka Nerd Font:size=12:antialias=true"
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
-       , template = "%UnsafeStdinReader% • %player%}{ %alsa:default:Master% • %cpu% • %memory% • %wlan0wi% • %battery% • %date% "
+       , template = "%UnsafeStdinReader% <fc=#ff5555>•</fc> %player%}{ %alsa:default:Master% <fc=#ff5555>•</fc> %cpu% <fc=#ff5555>•</fc> %memory% <fc=#ff5555>•</fc> %wlan0wi% <fc=#ff5555>•</fc> %battery% <fc=#ff5555>•</fc> %date% "
        }
 
