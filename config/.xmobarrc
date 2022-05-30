@@ -54,7 +54,7 @@ Config {font     = "xft:Iosevka Nerd Font:size=12:antialias=true"
                         ] 10
                     , Run Date "%a %Y-%m-%d <fc=#2de0a7>%H:%M</fc>" "date" 10
                     , Run Com "playerctl" ["metadata", "--format", "<fc=#1f2623,#bd93f9><fn=1> 懶 {{ artist }}-{{ title }} </fn></fc>"] "player" 10
-                    , Run Com "bash" [".xmonad/scripts/paired-bt.sh"] "bluetooth" 60
+                    , Run Com "bash" [".xmonad/scripts/paired-bt.sh"] "bluetooth" 10
                     , Run UnsafeStdinReader
                     ]
        , sepChar  = "%"
