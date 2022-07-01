@@ -1,5 +1,6 @@
 import XMonad
 import XMonad.Util.SpawnOnce
+import XMonad.Layout.Gaps
 
 import XMonad.Hooks.EwmhDesktops
 
@@ -218,7 +219,8 @@ myMouseBindings (XConfig {XMonad.modMask = super}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = tiled ||| Mirror tiled ||| Full
+
+myLayout = gaps [(U,10), (D,10), (R,10), (L,10)] $ tiled ||| gaps [(U,10), (D,10), (R,10), (L,10)] $ Mirror tiled ||| Full
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio

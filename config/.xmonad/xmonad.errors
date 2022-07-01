@@ -1,0 +1,26 @@
+
+xmonad.hs:223:52: error:
+    • Couldn't match expected type: Choose (Mirror Tall) Full a1 -> l a
+                  with actual type: Choose
+                                      Tall
+                                      ((->) (l0 a0))
+                                      (XMonad.Layout.LayoutModifier.ModifiedLayout Gaps l0 a0)
+    • The first argument of ($) takes one value argument,
+        but its type ‘Choose
+                        Tall
+                        ((->) (l0 a0))
+                        (XMonad.Layout.LayoutModifier.ModifiedLayout Gaps l0 a0)’
+        has none
+      In the second argument of ‘($)’, namely
+        ‘tiled ||| gaps [(U, 10), (D, 10), (R, 10), (L, 10)]
+           $ Mirror tiled ||| Full’
+      In the expression:
+        gaps [(U, 10), (D, 10), (R, 10), (L, 10)]
+          $ tiled ||| gaps [(U, 10), (D, 10), (R, 10), (L, 10)]
+              $ Mirror tiled ||| Full
+    • Relevant bindings include
+        myLayout :: XMonad.Layout.LayoutModifier.ModifiedLayout Gaps l a
+          (bound at xmonad.hs:223:1)
+    |
+223 | myLayout = gaps [(U,10), (D,10), (R,10), (L,10)] $ tiled ||| gaps [(U,10), (D,10), (R,10), (L,10)] $ Mirror tiled ||| Full
+    |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
